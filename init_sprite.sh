@@ -18,7 +18,11 @@ if [ -z "$(git config --global user.email)" ]; then
     git config --global user.email "$EMAIL"
 fi
 
-# 2. Generate SSH Key (if missing)
+# 2. Grant Git access to the mounted volume
+echo "   -> Granting Git access to /workspace"
+git config --global --add safe.directory /workspace
+
+# 3. Generate SSH Key (if missing)
 KEY_PATH="$HOME/.ssh/id_ed25519"
 if [ ! -f "$KEY_PATH" ]; then
     echo "   -> Forging new SSH Key for $EMAIL..."
