@@ -22,7 +22,17 @@ fi
 echo "   -> Granting Git access to /workspace"
 git config --global --add safe.directory /workspace
 
-# 3. Generate SSH Key (if missing)
+# 3. Handle SSH setup
+mkdir -p "$HOME/.ssh"
+chmod 700 "$HOME/.ssh"
+
+# Pre-populate known_hosts for GitHub to avoid interactive prompts
+if ! grep -q "github.com" "$HOME/.ssh/known_hosts" 2>/dev/null; then
+    echo "   -> Scanning GitHub SSH fingerprint..."
+    ssh-keyscan -H github.com >> "$HOME/.ssh/known_hosts" 2>/dev/null
+fi
+
+# 4. Generate SSH Key (if missing)
 KEY_PATH="$HOME/.ssh/id_ed25519"
 if [ ! -f "$KEY_PATH" ]; then
     echo "   -> Forging new SSH Key for $EMAIL..."
