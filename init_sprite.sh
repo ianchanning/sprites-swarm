@@ -48,5 +48,15 @@ else
     echo "   -> SSH Key already exists."
 fi
 
-# 3. Hand over control to the main command
+# 5. Clone the Mothership (sprites-swarm)
+MOTHERSHIP_DIR="$HOME/mothership"
+if [ ! -d "$MOTHERSHIP_DIR" ]; then
+    echo "   -> Attempting to clone Mothership (sprites-swarm) into $MOTHERSHIP_DIR..."
+    # This will succeed once the Deploy Key is added to GitHub
+    git clone git@github.com:ianchanning/sprites-swarm.git "$MOTHERSHIP_DIR" || echo "   !! Clone failed (Identity probably not authorized on GitHub yet)"
+else
+    echo "   -> Mothership already present at $MOTHERSHIP_DIR"
+fi
+
+# 6. Hand over control to the main command
 exec "$@"
