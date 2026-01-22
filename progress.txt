@@ -17,3 +17,4 @@
 - [2026-01-18] Upgraded `ralph.sh` to be location-aware, allowing it to find its 'soul' when run from `~/mothership`.
 - [2026-01-18] Refactored `lsprite.sh`: `create` command now orchestrates the full lifecycle (up -> wait for key -> gh-key -> clone mothership).
 - [2026-01-18] Simplified `init_sprite.sh` to focus solely on identity generation, moving repository cloning to the post-authorization `gh-key` step.
+- [2026-01-18] Enhanced `lsprite.sh rm` command to automatically delete the dedicated workspace directory on the host.

@@ -61,6 +61,11 @@ case "$1" in
     NAME=$2
     if [ -z "$NAME" ]; then echo "Usage: $0 rm <name>"; exit 1; fi
     $DOCKER_CMD rm -f "$NAME"
+    WORKSPACE_DIR="$(pwd)/workspace-$NAME"
+    if [ -d "$WORKSPACE_DIR" ]; then
+        echo "Removing workspace: $WORKSPACE_DIR"
+        rm -rf "$WORKSPACE_DIR"
+    fi
     ;;
   ls)
     $DOCKER_CMD ps --filter "ancestor=$IMAGE_NAME"
