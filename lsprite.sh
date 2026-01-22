@@ -45,8 +45,28 @@ case "$1" in
     # Grep the key from the logs (grabbing the last occurrence if multiple exist)
     $DOCKER_CMD logs "$NAME" 2>&1 | grep "ssh-ed25519" | tail -n 1
     ;;
+  gh-key)
+    NAME=$2
+    if [ -z "$NAME" ]; then echo "Usage: $0 gh-key <name>"; exit 1; fi
+    # Extract key
+    KEY=$($DOCKER_CMD logs "$NAME" 2>&1 | grep "ssh-ed25519" | tail -n 1)
+    if [ -z "$KEY" ]; then echo "Error: No SSH key found in logs for $NAME"; exit 1; fi
+    
+    echo "Adding deploy key for '$NAME' to GitHub..."
+    # Create a temp file for the key
+    TMP_KEY_FILE="/tmp/${NAME}_key.pub"
+    echo "$KEY" > "$TMP_KEY_FILE"
+    
+    # Use gh cli to add the deploy key (requires gh to be authenticated)
+    if gh repo deploy-key add "$TMP_KEY_FILE" --allow-write --title "$NAME"; then
+       echo "✓ Deploy key added successfully!"
+    else
+       echo "✗ Failed to add deploy key."
+    fi
+    rm "$TMP_KEY_FILE"
+    ;;
   *)
-    echo "Usage: $0 {build|create|up|in|rm|ls|key}"
+    echo "Usage: $0 {build|create|up|in|rm|ls|key|gh-key}"
     exit 1
     ;;
 esac

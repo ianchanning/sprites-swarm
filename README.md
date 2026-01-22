@@ -32,16 +32,20 @@ Create a new persistent container. Let's call it `tentacle-1`.
 ### 3. Jack In (The Pirate Parley)
 The Sprite automatically generates its own identity on startup. You just need to give it access.
 
-1.  **Retrieve Key:** Extract the public key from the Sprite's logs:
-    ```bash
-    ./lsprite.sh key tentacle-1
-    ```
-2.  **Grant Access:** Copy that key and add it to your GitHub Repo as a **Deploy Key** with **Write Access**.
-3.  **Enter the Cave:**
-    ```bash
-    ./lsprite.sh in tentacle-1
-    ```
-4.  **Verify (Optional):** Inside the cave, run `ssh -T git@github.com`. The handshake is pre-configured, so it should just welcome you.
+**Option A (Automated - Requires `gh` CLI):**
+```bash
+./lsprite.sh gh-key tentacle-1
+```
+
+**Option B (Manual):**
+1.  Retrieve the key: `./lsprite.sh key tentacle-1`
+2.  Add it to GitHub Repo -> Settings -> Deploy Keys (Allow Write Access).
+
+**Finally, Enter the Cave:**
+```bash
+./lsprite.sh in tentacle-1
+```
+*Inside, run `ssh -T git@github.com` to verify access.*
 
 ### 4. Unleash the Ralph Loop
 Once the Parley is sealed, you can run the autonomous loop inside the Cave.
