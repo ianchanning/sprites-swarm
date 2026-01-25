@@ -29,3 +29,4 @@
 - [2026-01-25] Internalized 'Ralph Loop' 1st Principles and generated the Nyx Interview Protocol for spec generation.
 - [2026-01-25] Purged old PRD.md and updated README.md to reflect new SPEC.md-first workflow. Ready for Nyx Interview Protocol.
 - [2026-01-25] Recreated the XP Team Board in HTML/CSS, achieving visual parity with Miro/whiteboard source through surgical CSS refinements (locked grid, sharp geometry, and functional links).
+2026-01-25: Purged sensitive image from history. Recreated team board as HTML/CSS template in references/team-board.html with right-aligned footer for 'Carpenter' aesthetic.
