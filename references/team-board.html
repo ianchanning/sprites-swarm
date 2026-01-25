@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Board Template</title>
+    <style>
+        :root {
+            --bg-gray: #f5f5f5;
+            --header-orange: #ffe6cc;
+            --header-yellow: #fff2cc;
+            --header-blue: #dae8fc;
+            --header-green: #d5e8d4;
+            
+            /* Legend Colors */
+            --card-build: #dae8fc;   /* Blue */
+            --card-retro: #f8cecc;   /* Pink */
+            --card-bug: #f5b7b1;     /* Salmon */
+            --card-intel: #e1d5e7;   /* Purple */
+            --card-need: #fff2cc;    /* Yellow */
+            
+            --border-color: #ccc;
+        }
+
+        body { font-family: sans-serif; background-color: #fff; padding: 20px; font-size: 12px; color: #333; }
+        
+        .board { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 20px; }
+
+        /* Columns */
+        .column { border: 1px solid var(--border-color); min-height: 600px; flex: 1; display: flex; flex-direction: column; }
+        .column-header { text-align: center; padding: 10px; font-weight: bold; border-bottom: 1px solid var(--border-color); }
+        .content { padding: 10px; display: flex; flex-direction: column; gap: 8px; }
+
+        /* Specific Column Widths */
+        .wip-column { flex: 2.5; background: none; border: none; display: flex; flex-direction: column; gap: 10px; }
+
+        /* Cards */
+        .card { padding: 8px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.1); box-shadow: 1px 1px 3px rgba(0,0,0,0.05); position: relative; }
+        .avatar { width: 18px; height: 18px; background: #666; border-radius: 50%; display: inline-block; margin-right: 4px; vertical-align: middle; }
+
+        /* Card Type Styles */
+        .build { background-color: var(--card-build); }
+        .retro { background-color: var(--card-retro); }
+        .bug { background-color: var(--card-bug); }
+        .intel { background-color: var(--card-intel); }
+        .need { background-color: var(--card-need); }
+
+        /* WIP Layout Sections */
+        .wip-row { display: flex; gap: 10px; width: 100%; }
+        .sub-box { border: 1px solid var(--border-color); flex: 1; }
+        .sub-header { background: #eee; padding: 4px; font-size: 10px; text-transform: uppercase; text-align: center; font-weight: bold; }
+
+        /* Footer */
+        .footer { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
+        .legend-row { display: flex; gap: 10px; justify-content: center; }
+        .legend-item { padding: 5px 15px; border-radius: 2px; font-weight: bold; }
+
+        .project-row { display: flex; gap: 10px; }
+        .project-block { flex: 1; background: #006400; color: white; height: 100px; padding: 10px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; }
+        .project-sub { background: var(--card-need); color: #333; padding: 5px; margin-top: 5px; font-weight: bold; text-align: center; width: 60%; }
+    </style>
+</head>
+<body>
+
+<div class="board">
+    <!-- Ideas -->
+    <div class="column">
+        <div class="column-header" style="background: var(--bg-gray);">Ideas</div>
+        <div class="content">
+            <div class="card build">Categorizing risks / Friendly Name</div>
+            <div class="card build">Severity scoring (CVSS/AVSS)</div>
+            <div class="card build">Expose framework mappings</div>
+            <div class="card retro">Move demo deployments to Actions</div>
+            <div class="card retro">Cloud Storage cleanup</div>
+            <div class="card bug">Snapshot Bloat management</div>
+        </div>
+    </div>
+
+    <!-- Risk Next -->
+    <div class="column">
+        <div class="column-header" style="background: var(--header-orange);">Risk Next</div>
+        <div class="content">
+            <div class="card intel">Risk detections for LLM Provider A</div>
+            <div class="card intel">System prompt optimization</div>
+            <div class="card build">Internal tool improvement</div>
+            <div class="card retro">Establish Risk On-Call</div>
+            <div class="card retro">Regression / Schema testing</div>
+        </div>
+    </div>
+
+    <!-- Next -->
+    <div class="column">
+        <div class="column-header" style="background: var(--header-yellow);">Next</div>
+        <div class="content">
+            <div class="card bug">Stale annotations cleanup</div>
+            <div class="card build">Multi-user endpoint support</div>
+            <div class="card build">Scan status detail logging</div>
+            <div class="card build">Environment migration</div>
+            <div class="card retro">Telemetry compatibility</div>
+        </div>
+    </div>
+
+    <!-- WIP Area -->
+    <div class="wip-column">
+        <div class="wip-row">
+            <div class="sub-box" style="background: #eef4ff;">
+                <div class="sub-header">WIP</div>
+                <div class="content">
+                    <div class="card build"><span class="avatar"></span>Agent Owner management</div>
+                </div>
+            </div>
+            <div class="sub-box" style="background: #eef4ff;">
+                <div class="sub-header">WIP</div>
+                <div class="content">
+                    <div class="card build"><span class="avatar"></span>Endpoint enrollment logic</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="wip-row">
+            <div class="sub-box">
+                <div class="sub-header" style="background: var(--card-need);">Asks/Issues</div>
+                <div class="content">
+                    <div class="card retro">Establish On-Call</div>
+                </div>
+            </div>
+            <div class="sub-box" style="background: var(--card-need);">
+                <div class="sub-header">Risk Intel</div>
+                <div class="content" style="flex-direction: row; flex-wrap: wrap;">
+                    <div class="card intel" style="flex: 1;">Framework Standard 01</div>
+                    <div class="card intel" style="flex: 1;">Framework Standard 06</div>
+                    <div class="card bug" style="width: 100%;">Platform Data Collation</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wip-row">
+            <div class="sub-box" style="flex: 0.5;">
+                <div class="sub-header">Meetings</div>
+                <div class="content"><div class="card build"><span class="avatar"></span>Weekly Sync</div></div>
+            </div>
+            <div class="sub-box" style="flex: 0.5; background: #f4f1ff;">
+                <div class="sub-header">OOO</div>
+                <div class="content"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Done -->
+    <div class="column">
+        <div class="column-header" style="background: var(--header-green);">Done</div>
+        <div class="content">
+            <div class="card bug">VPN Service Connectivity</div>
+            <div class="card build">Fix Platform Connections</div>
+            <div class="card build">Telemetry Access Roles</div>
+            <div class="card build">Drop Public SSH Access</div>
+            <div class="card build">Cloud Studio Integration</div>
+            <div class="card build">Risk Report Automation</div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="legend-row">
+        <div class="legend-item retro">Retro Action</div>
+        <div class="legend-item bug">Bugs / Papercuts</div>
+        <div class="legend-item build">Planned Build</div>
+        <div class="legend-item intel">Planned Intelligence</div>
+        <div class="legend-item need">Customer Need</div>
+    </div>
+
+    <div class="project-row">
+        <div class="project-block">Project Phoenix <div class="project-sub">LLM Service</div></div>
+        <div class="project-block">Project Orion</div>
+        <div class="project-block">Project Vega</div>
+        <div class="project-block">Project Cygnus <div class="project-sub">Assistant</div></div>
+        <div class="project-block">Project Draco <div class="project-sub">Internal Tool</div></div>
+    </div>
+</div>
+
+</body>
+</html>
