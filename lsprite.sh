@@ -2,6 +2,16 @@
 
 IMAGE_NAME="local-sprite-base"
 
+# Naming Strategy Lists
+ANIMALS=("shark" "crocodile" "tiger" "eagle" "wolf" "bear" "dragon" "octopus" "viper" "raven" "panther" "cobra" "hawk" "orca" "lynx" "scorpion" "falcon" "bull" "ram" "mantis")
+NATO=("alpha" "bravo" "charlie" "delta" "echo" "foxtrot" "golf" "hotel" "india" "juliet" "kilo" "lima" "mike" "november" "oscar" "papa" "quebec" "romeo" "sierra" "tango" "uniform" "victor" "whiskey" "xray" "yankee" "zulu")
+
+generate_name() {
+    local ANIMAL=${ANIMALS[$RANDOM % ${#ANIMALS[@]}]}
+    local PHONETIC=${NATO[$RANDOM % ${#NATO[@]}]}
+    echo "${ANIMAL}-${PHONETIC}"
+}
+
 # Auto-detect if sudo is needed for docker
 if ! docker ps >/dev/null 2>&1; then
     DOCKER_CMD="sudo docker"
@@ -16,7 +26,14 @@ case "$1" in
     ;;
   create)
     NAME=$2
-    if [ -z "$NAME" ]; then echo "Usage: $0 create <name>"; exit 1; fi
+    if [ -z "$NAME" ]; then
+        NAME=$(generate_name)
+        # Ensure name uniqueness
+        while [ "$($DOCKER_CMD ps -a -q -f name=^/${NAME}$)" ]; do
+            NAME=$(generate_name)
+        done
+        echo "Generated Sprite Name: $NAME"
+    fi
     
     # 1. Bring up the container (low-level)
     $0 up "$NAME"

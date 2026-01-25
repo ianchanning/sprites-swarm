@@ -23,3 +23,4 @@
 - [2026-01-18] Updated `README.md` with the new streamlined workflow (build -> create -> clone -> in -> ralph).
 - [2026-01-25] Pivot: Abandoned `snake-htmx` strike. Re-targeting `ianchanning/kanban-rust-htmx` for "Tools for Carpenters" mission.- [2026-01-25] Created 'ianchanning/kanban-rust-htmx' repository via 'gh' CLI.
 - [2026-01-25] Implemented NPM cache-busting in 'Dockerfile.sprite' using registry metadata fetching to ensure Sprites always have the latest agent tools.
+- [2026-01-25] Upgraded 'lsprite.sh' with an automated animal-NATO naming strategy for anonymous Sprite creation.
