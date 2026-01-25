@@ -30,4 +30,4 @@
 - [2026-01-25] Internalized 'Ralph Loop' 1st Principles and generated the Nyx Interview Protocol for spec generation.
 - [2026-01-25] Purged old PRD.md and updated README.md to reflect new SPEC.md-first workflow. Ready for Nyx Interview Protocol.
 - [2026-01-25] Recreated the XP Team Board in HTML/CSS, achieving visual parity with Miro/whiteboard source through surgical CSS refinements (locked grid, sharp geometry, and functional links).
-- [2026-01-25] Anonymized and stabilized the Team Board HTML template for public use in `references/team-board-example.html`.
+- [2026-01-25] Anonymized and stabilized the Team Board HTML template for public use in `references/team-board-example.html`.- [2026-01-25] Forged the 'Team Board Pillars' (TEAM_BOARD_PILLARS.md), establishing a minimalist, submarine-inspired philosophy: 'Notes' as atomic units, 'Group Leashing' for Sprites, and rugged, HTMX-powered sigil updates.
