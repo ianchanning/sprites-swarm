@@ -9,16 +9,12 @@
    * Leashing the Tentacles: Sprites (Tentacles) are "leashed" to a WIP Group. A Sprite’s **Cave_Context** is defined by its identity—a unique sigil like "🦂A" (animal emoji + NATO letter).
    * Brutal Minimalism: There are **no Weights and no Dependencies**. Priority is defined spatially: the top note in a Group's stack is the current focus of the leashed Sprites.
 
-  2. The HTMX Interaction Model: Swaps, OOB fragments, and the "Vibe"
+  2. The HTMX Interaction Model: Rugged Real-Time Sigils
 
-  The board must feel like a living, breathing entity—not a static page. (⇌) This is a voyage into high-frequency state synchronization.
+  We lean on native browser behaviors and standard HTML for the board's structure, reserving HTMX for the fluid heartbeat of the swarm. (⇌)
 
-   * Swaps: We use hx-swap="outerHTML" for card movements. Dragging a card from "Next" to "WIP" triggers a POST that immediately replaces the card with a "Jacked In" version,
-     showing the live tail -f output of the ralph.sh loop inside the Sprite's Cave.
-   * OOB Fragments: This is the secret sauce. When a Sprite hits a FAILURE domain (see #5), the server pushes an Out-Of-Band div that triggers a red strobe effect on the Octopus's
-     header and injects a "Risk Alert" into the Risk Intel column of the board, regardless of where you are looking.
-   * The "Vibe": It’s Twitchy-Functional. It feels like a terminal tailing a log, but with the spatial layout of the Team Board. You see the faces (the souls) flickering as they
-     process iterations. It’s the visual equivalent of hearing a CPU fan spin up.
+   * Rugged Interactions: Most board actions are simple POSTs and standard HTML swaps. We avoid complex transitions or client-side logic that fights the browser, prioritizing stability and predictability.
+   * Real-Time Sigils: HTMX is dedicated to one thing: the fluid updates of the Sprite sigils (🦂A). Through simple OOB (Out-of-Band) updates, the Carpenter sees the live status of the swarm (Idle, Busy, Done) without the overhead of a heavy SPA.
 
   3. Persistence & Safety: SQLite + 'The Safety Net'
 
